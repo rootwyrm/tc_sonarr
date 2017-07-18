@@ -6,7 +6,8 @@ export tcgroup=$(getent group $tcuser | cut -d : -f 1)
 
 cat /etc/motd
 
-echo "[APPLICATION] Starting headphones as $tcuser:$tcgroup"
+echo "[APPLICATION] Starting Sonarr as $tcuser:$tcgroup"
 echo " "
+export MONO_TLS_PROVIDER=legacy
 ## NOTE: Cannot use backtick to format nicely.
-exec chpst -u $tcuser:$tcgroup /opt/headphones/Headphones.py --datadir=/config
+exec chpst -u $tcuser:$tcgroup mono /opt/talecaster/NzbDrone/NzbDrone.exe --datadir=/config
